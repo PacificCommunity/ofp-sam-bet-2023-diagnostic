@@ -7,7 +7,7 @@ MFCL=./mfclo64
 
 if [ ! -f 00.par ]; then
   $MFCL bet.frq bet.ini 00.par -makepar
-  
+
 fi
 #
 #  ------------------------
@@ -18,7 +18,7 @@ if [ ! -f 01.par ]; then
   $MFCL bet.frq 00.par 01.par -file - <<PHASE1
 #------------------------------------------------------------------------------
 # Initial phase control option
-# Using default quasi-Newton minimizer 
+# Using default quasi-Newton minimizer
   1 351 0 1 192 0
 #
   1 32 7          # This is a change from 2014 that allows all growth parameters to be fixed during the contol phase
@@ -117,11 +117,11 @@ if [ ! -f 01.par ]; then
   1 139 3         # sets likelihood function for WF data to normal
   -999 49 20      # divide LF sample sizes by 20 (default=10)
   -999 50 20      # divide WF sample sizes by 20 (default=10)
-# For longline ALL and Index fisheries reduce the sample size in half so we aren't double counting the sample sizes  
+# For longline ALL and Index fisheries reduce the sample size in half so we aren't double counting the sample sizes
   -1 49 40    -1 50 40
   -2 49 40    -2 50 40
   -4 49 40    -4 50 40
-  -7 49 40    -7 50 40      
+  -7 49 40    -7 50 40
   -8 49 40    -8 50 40
   -9 49 40    -9 50 40
   -11 49 40    -11 50 40
@@ -200,7 +200,7 @@ if [ ! -f 01.par ]; then
   -999 26 2        # sets length-dependent selectivity option
   -999 57 3        # uses cubic spline selectivity
   -999 61 5        # with 5 nodes for cubic spline
-  
+
 # grouping of fisheries with common selectivity
   -1  24  1 # LL ALL 1
   -2  24  2 # LL ALL 2
@@ -210,8 +210,8 @@ if [ ! -f 01.par ]; then
   -12 24  6 # LL ALL 6
   -11 24  7 # LL ALL 5
   -29 24  7 # LL ALL 9
-  -5  24  8 # LL OS 3    
-  -6  24  9 # LL OS 7 
+  -5  24  8 # LL OS 3
+  -6  24  9 # LL OS 7
   -7  24 10 # LL ALL 7
   -8  24 11 # LL ALL 8
   -10 24 12 # LL AU 5
@@ -231,7 +231,7 @@ if [ ! -f 01.par ]; then
   -21 24 23 # PL JP 3
   -22 24 24 # PL JP 8
   -23 24 25 # MISC ID 7     # Dom ID and VN PL region 7
-  -24 24 26 # PS PHID 7 
+  -24 24 26 # PS PHID 7
   -28 24 27 # PL ALL 7
   -32 24 28 # MISC VN 7
   -33 24 29 # Index fisheries
@@ -242,7 +242,7 @@ if [ ! -f 01.par ]; then
   -38 24 29
   -39 24 29
   -40 24 29
-  -41 24 29  
+  -41 24 29
 # Non-Decreasing Selectivity for at least one index/longline fishery in each region #John suggests modifying this later - just for index fisheries
   -6 16 1
 # make other longline selectivites 0 for the first two age classes
@@ -255,19 +255,19 @@ if [ ! -f 01.par ]; then
   -11  75 2
   -12  75 2
   -29  75 2
-# make HL.PHID.7 selectivites 0 for the first 5 age classes 
-  -18  75 5      
+# make HL.PHID.7 selectivites 0 for the first 5 age classes
+  -18  75 5
 
-  -13 16 2  -13 3 25         # FAD fisheries age-based with splines and set to zero above 25 quarters 
+  -13 16 2  -13 3 25         # FAD fisheries age-based with splines and set to zero above 25 quarters
   -15 16 2  -15 3 25
   -25 16 2  -25 3 25
   -30 16 2  -30 3 25
-   
+
   -14 16 2  -14 3 30         # Free school fisheries
-  -16 16 2  -16 3 30        
+  -16 16 2  -16 3 30
   -26 16 2  -26 3 30
   -31 16 2  -31 3 30
-            
+
 #  -17 16 2 -17 3 12          # Forcing selectivity to zero for large fish in the small MISC fisheries
 #  -23 16 2 -23 3 12
   -24 16 2 -24 3 12
@@ -277,14 +277,14 @@ if [ ! -f 01.par ]; then
   -20 16 2 -20 3 25
 #  -21 16 2 -21 3 25
 #  -22 16 2 -22 3 25
- 
+
   # Forcing selectivity to zero for large fish in the small MISC fisheries _Nicholas' fixSelBump additional step
-  -17 16 2 -17 3 9          
+  -17 16 2 -17 3 9
   -21 16 2 -21 3 10
   -22 16 2 -22 3 7
   -23 16 2 -23 3 6
   -28 16 2 -28 3 7
-  -32 16 2 -32 3 9  
+  -32 16 2 -32 3 9
 
 # Set first age class for PS and PL fisheries to 0 so as not to have weird recruitment distributions (From YFT)
 # Fisheries 13-16, 19-22, 25, 26 30 31
@@ -292,7 +292,7 @@ if [ ! -f 01.par ]; then
 #  -13 75 1  # etc
 # Turn on weighted spline for calculating maturity at age
   2 188 2
-  
+
 # Set Lorenzen M
   2 109 3        # Specifies Lorenzen
   1 121 0        # But not estimate the scaling parameter yet
@@ -306,7 +306,7 @@ if [ ! -f 01.par ]; then
 # v2.2.2.0 VB variance fix
   1 34 0                             # Set to 1 34 1 for backwards compatibility
 PHASE1
-  
+
 fi
 #------------------------------------------------------------------------------
 #
@@ -317,11 +317,11 @@ fi
 if [ ! -f 02.par ]; then
   $MFCL bet.frq 01.par 02.par -file - <<PHASE2
   1 1 100         # set max. number of function evaluations per phase to 100
-  1 50 0          # set convergence criterion to 1 
+  1 50 0          # set convergence criterion to 1
   2 113 0         # scaling init pop - turned off
   1 190 1         # write plot-xxx.par.rep
 PHASE2
-  
+
 fi
 #------------------------------------------------------------------------------
 #   PHASE 3
@@ -333,7 +333,7 @@ if [ ! -f 03.par ]; then
   2 178 1         # constraint on regional recruitments to be equal to one each model period #SJH2014
   1 1 200
 PHASE3
-  
+
 fi
 #------------------------------------------------------------------------------
 #   PHASE 4
@@ -342,9 +342,9 @@ if [ ! -f 04.par ]; then
   $MFCL bet.frq 03.par 04.par -file - <<PHASE4
   2 68 1          # estimate movement coefficients
   2 69 1
-  2 27 -1         # penalty wt 0.1 computed against prior  
+  2 27 -1         # penalty wt 0.1 computed against prior
 PHASE4
-  
+
 fi
 #------------------------------------------------------------------------------
 #   PHASE 5
@@ -361,7 +361,7 @@ if [ ! -f 05.par ]; then
   -100000 8 1
   -100000 9 1
 PHASE5
-  
+
 fi
 #------------------------------------------------------------------------------
 #   PHASE 6
@@ -374,7 +374,7 @@ if [ ! -f 06.par ]; then
   1 13 1          # and mean length of age n
   1 1 300         # function evaluations
 PHASE6
-  
+
 fi
 #------------------------------------------------------------------------------
 #   PHASE 7
@@ -388,7 +388,7 @@ if [ ! -f 07.par ]; then
   1 184 0      # estimate parameters
   1 1 500      # function evaluations
 PHASE7
-  
+
 fi
 #------------------------------------------------------------------------------
 #   PHASE 8
@@ -400,10 +400,10 @@ if [ ! -f 08.par ]; then
   2 182 1        # make SRR annual rather than quarterly
   2 161 1        # lognormal bias correction
   2 163 0        # use steepness parameterization of B&H SRR
-  1 149 0	       # set to 0 for the moment 
-  2 147 1	       # time period between spawning and recruitment
+  1 149 0              # set to 0 for the moment
+  2 147 1              # time period between spawning and recruitment
   2 148 20       # period for MSY calc - last 20 quarters
-  2 155 4	       # but not including last year
+  2 155 4              # but not including last year
   2 199 212      # start period for SRR estimation/yield is start 1965?
   2 200 6        # end period for SRR estimation is mid 2017
   -999 55 1      # Do impact analysis
@@ -414,9 +414,9 @@ if [ ! -f 08.par ]; then
   1 189 1           # Write .fit files
   1 1 500       # function evaluations for the final phase - TO BEGIN WITH
   1 50 -2        # convergence criteria
-  2 116 100      # increase F bound for NR to 1.0    
+  2 116 100      # increase F bound for NR to 1.0
 PHASE8
-  
+
 fi
 #------------------------------------------------------------------------------
 #   PHASE 9
@@ -426,9 +426,9 @@ if [ ! -f 09.par ]; then
   2 145 -1       # use SRR parameters - low penalty for deviation
   1 1 500        # function evaluations for the final phase - TO BEGIN WITH
   1 50 -2        # convergence criteria
-  2 116 300      # increase F bound for NR to 3.0    
+  2 116 300      # increase F bound for NR to 3.0
 PHASE9
-  
+
 fi
 #
 # ---------
@@ -437,10 +437,10 @@ fi
 if [ ! -f 10.par ]; then
   $MFCL bet.frq 09.par 10.par -file - <<PHASE10
   1 1 10000      # function evaluations for the final phase - TO BEGIN WITH
-  1 50 -5        # convergence criteria 
-  1 121 1        # Estimate scaling parameter for Lorenzen (age_pars(5,1))    
+  1 50 -5        # convergence criteria
+  1 121 1        # Estimate scaling parameter for Lorenzen (age_pars(5,1))
 PHASE10
-  
+
 fi
 #
 #
@@ -452,6 +452,6 @@ if [ ! -f 11.par ]; then
   1 1 5000
   1 50 -5        # convergence criteria
 PHASE11
-  
+
 fi
 
