@@ -4,16 +4,14 @@
 #  ------------------------
 #
 
-if [ ! -f 00.par ]; then
   mfclo64 bet.frq bet.ini 00.par -makepar
 
-fi
 #
 #  ------------------------
 #  PHASE 1 - initial par
 #  ------------------------
 #
-if [ ! -f 01.par ]; then
+
   mfclo64 bet.frq 00.par 01.par -file - <<PHASE1
 #------------------------------------------------------------------------------
 # Initial phase control option
@@ -306,14 +304,13 @@ if [ ! -f 01.par ]; then
   1 34 0                             # Set to 1 34 1 for backwards compatibility
 PHASE1
 
-fi
 #------------------------------------------------------------------------------
 #
 #
 #------------------------------------------------------------------------------
 #   PHASE 2
 #------------------------------------------------------------------------------
-if [ ! -f 02.par ]; then
+
   mfclo64 bet.frq 01.par 02.par -file - <<PHASE2
   1 1 100         # set max. number of function evaluations per phase to 100
   1 50 0          # set convergence criterion to 1
@@ -321,11 +318,10 @@ if [ ! -f 02.par ]; then
   1 190 1         # write plot-xxx.par.rep
 PHASE2
 
-fi
 #------------------------------------------------------------------------------
 #   PHASE 3
 #------------------------------------------------------------------------------
-if [ ! -f 03.par ]; then
+
   mfclo64 bet.frq 02.par 03.par -file - <<PHASE3
   2 70 1          # activate parameters and turn on
   2 71 1          # estimation of temporal changes in recruitment distribution
@@ -333,22 +329,20 @@ if [ ! -f 03.par ]; then
   1 1 200
 PHASE3
 
-fi
 #------------------------------------------------------------------------------
 #   PHASE 4
 #------------------------------------------------------------------------------
-if [ ! -f 04.par ]; then
+
   mfclo64 bet.frq 03.par 04.par -file - <<PHASE4
   2 68 1          # estimate movement coefficients
   2 69 1
   2 27 -1         # penalty wt 0.1 computed against prior
 PHASE4
 
-fi
 #------------------------------------------------------------------------------
 #   PHASE 5
 #------------------------------------------------------------------------------
-if [ ! -f 05.par ]; then
+
   mfclo64 bet.frq 04.par 05.par -file - <<PHASE5
   -100000 1 1     # estimate
   -100000 2 1     # time-invariant
@@ -361,11 +355,10 @@ if [ ! -f 05.par ]; then
   -100000 9 1
 PHASE5
 
-fi
 #------------------------------------------------------------------------------
 #   PHASE 6
 #------------------------------------------------------------------------------
-if [ ! -f 06.par ]; then
+
   mfclo64 bet.frq 05.par 06.par -file - <<PHASE6
   1 240 1         # Fit to age-length data
   1 14 1          # estimate von Bertalanffy K
@@ -374,11 +367,10 @@ if [ ! -f 06.par ]; then
   1 1 300         # function evaluations
 PHASE6
 
-fi
 #------------------------------------------------------------------------------
 #   PHASE 7
 #------------------------------------------------------------------------------
-if [ ! -f 07.par ]; then
+
   mfclo64 bet.frq 06.par 07.par -file - <<PHASE7
   1 15 1       # estimate "generic" SD of length-at-age
   1 16 1       # estimate length dependent SD
@@ -388,11 +380,10 @@ if [ ! -f 07.par ]; then
   1 1 500      # function evaluations
 PHASE7
 
-fi
 #------------------------------------------------------------------------------
 #   PHASE 8
 #------------------------------------------------------------------------------
-if [ ! -f 08.par ]; then
+
   mfclo64 bet.frq 07.par 08.par -file - <<PHASE8
   2 145 1       # use SRR parameters - low penalty for deviation
   2 146 1        # estimate SRR parameters
@@ -416,11 +407,10 @@ if [ ! -f 08.par ]; then
   2 116 100      # increase F bound for NR to 1.0
 PHASE8
 
-fi
 #------------------------------------------------------------------------------
 #   PHASE 9
 #------------------------------------------------------------------------------
-if [ ! -f 09.par ]; then
+
   mfclo64 bet.frq 08.par 09.par -file - <<PHASE9
   2 145 -1       # use SRR parameters - low penalty for deviation
   1 1 500        # function evaluations for the final phase - TO BEGIN WITH
@@ -428,29 +418,24 @@ if [ ! -f 09.par ]; then
   2 116 300      # increase F bound for NR to 3.0
 PHASE9
 
-fi
 #
 # ---------
 #  PHASE 10 Estimate Lorenzen M scaling parameter
 # ---------
-if [ ! -f 10.par ]; then
+
   mfclo64 bet.frq 09.par 10.par -file - <<PHASE10
   1 1 10000      # function evaluations for the final phase - TO BEGIN WITH
   1 50 -5        # convergence criteria
   1 121 1        # Estimate scaling parameter for Lorenzen (age_pars(5,1))
 PHASE10
 
-fi
 #
 #
 # ---------
 #  PHASE 11 Extra phase added to doitall
 # ---------
-if [ ! -f 11.par ]; then
+
   mfclo64 bet.frq 10.par 11.par -file - <<PHASE11
   1 1 5000
   1 50 -5        # convergence criteria
 PHASE11
-
-fi
-
