@@ -1,18 +1,16 @@
 #!/bin/sh
-#  ------------------------
+
+# -----------------------------------
 #  PHASE 0 - create initial par file
-#  ------------------------
-#
+# -----------------------------------
 
-  mfclo64 bet.frq bet.ini 00.par -makepar
+mfclo64 bet.frq bet.ini 00.par -makepar
 
-#
-#  ------------------------
+# -----------------------
 #  PHASE 1 - initial par
-#  ------------------------
-#
+# -----------------------
 
-  mfclo64 bet.frq 00.par 01.par -file - <<PHASE1
+mfclo64 bet.frq 00.par 01.par -file - <<PHASE1
 #------------------------------------------------------------------------------
 # Initial phase control option
 # Using default quasi-Newton minimizer
@@ -304,46 +302,43 @@
   1 34 0                             # Set to 1 34 1 for backwards compatibility
 PHASE1
 
-#------------------------------------------------------------------------------
-#
-#
-#------------------------------------------------------------------------------
-#   PHASE 2
-#------------------------------------------------------------------------------
+# ---------
+#  PHASE 2
+# ---------
 
-  mfclo64 bet.frq 01.par 02.par -file - <<PHASE2
+mfclo64 bet.frq 01.par 02.par -file - <<PHASE2
   1 1 100         # set max. number of function evaluations per phase to 100
   1 50 0          # set convergence criterion to 1
   2 113 0         # scaling init pop - turned off
   1 190 1         # write plot-xxx.par.rep
 PHASE2
 
-#------------------------------------------------------------------------------
-#   PHASE 3
-#------------------------------------------------------------------------------
+# ---------
+#  PHASE 3
+# ---------
 
-  mfclo64 bet.frq 02.par 03.par -file - <<PHASE3
+mfclo64 bet.frq 02.par 03.par -file - <<PHASE3
   2 70 1          # activate parameters and turn on
   2 71 1          # estimation of temporal changes in recruitment distribution
   2 178 1         # constraint on regional recruitments to be equal to one each model period #SJH2014
   1 1 200
 PHASE3
 
-#------------------------------------------------------------------------------
-#   PHASE 4
-#------------------------------------------------------------------------------
+# ---------
+#  PHASE 4
+# ---------
 
-  mfclo64 bet.frq 03.par 04.par -file - <<PHASE4
+mfclo64 bet.frq 03.par 04.par -file - <<PHASE4
   2 68 1          # estimate movement coefficients
   2 69 1
   2 27 -1         # penalty wt 0.1 computed against prior
 PHASE4
 
-#------------------------------------------------------------------------------
-#   PHASE 5
-#------------------------------------------------------------------------------
+# ---------
+#  PHASE 5
+# ---------
 
-  mfclo64 bet.frq 04.par 05.par -file - <<PHASE5
+mfclo64 bet.frq 04.par 05.par -file - <<PHASE5
   -100000 1 1     # estimate
   -100000 2 1     # time-invariant
   -100000 3 1     # distribution
@@ -355,11 +350,11 @@ PHASE4
   -100000 9 1
 PHASE5
 
-#------------------------------------------------------------------------------
-#   PHASE 6
-#------------------------------------------------------------------------------
+# ---------
+#  PHASE 6
+# ---------
 
-  mfclo64 bet.frq 05.par 06.par -file - <<PHASE6
+mfclo64 bet.frq 05.par 06.par -file - <<PHASE6
   1 240 1         # Fit to age-length data
   1 14 1          # estimate von Bertalanffy K
   1 12 1          # and mean length of age 1
@@ -367,11 +362,11 @@ PHASE5
   1 1 300         # function evaluations
 PHASE6
 
-#------------------------------------------------------------------------------
-#   PHASE 7
-#------------------------------------------------------------------------------
+# ---------
+#  PHASE 7
+# ---------
 
-  mfclo64 bet.frq 06.par 07.par -file - <<PHASE7
+mfclo64 bet.frq 06.par 07.par -file - <<PHASE7
   1 15 1       # estimate "generic" SD of length-at-age
   1 16 1       # estimate length dependent SD
   1 173 0      # activate independent mean lengths for 1st 8 age classes
@@ -380,11 +375,11 @@ PHASE6
   1 1 500      # function evaluations
 PHASE7
 
-#------------------------------------------------------------------------------
-#   PHASE 8
-#------------------------------------------------------------------------------
+# ---------
+#  PHASE 8
+# ---------
 
-  mfclo64 bet.frq 07.par 08.par -file - <<PHASE8
+mfclo64 bet.frq 07.par 08.par -file - <<PHASE8
   2 145 1       # use SRR parameters - low penalty for deviation
   2 146 1        # estimate SRR parameters
   2 182 1        # make SRR annual rather than quarterly
@@ -407,35 +402,32 @@ PHASE7
   2 116 100      # increase F bound for NR to 1.0
 PHASE8
 
-#------------------------------------------------------------------------------
-#   PHASE 9
-#------------------------------------------------------------------------------
+# ---------
+#  PHASE 9
+# ---------
 
-  mfclo64 bet.frq 08.par 09.par -file - <<PHASE9
+mfclo64 bet.frq 08.par 09.par -file - <<PHASE9
   2 145 -1       # use SRR parameters - low penalty for deviation
   1 1 500        # function evaluations for the final phase - TO BEGIN WITH
   1 50 -2        # convergence criteria
   2 116 300      # increase F bound for NR to 3.0
 PHASE9
 
-#
-# ---------
-#  PHASE 10 Estimate Lorenzen M scaling parameter
-# ---------
+# --------------------------------------------------
+#  PHASE 10 - estimate Lorenzen M scaling parameter
+# --------------------------------------------------
 
-  mfclo64 bet.frq 09.par 10.par -file - <<PHASE10
+mfclo64 bet.frq 09.par 10.par -file - <<PHASE10
   1 1 10000      # function evaluations for the final phase - TO BEGIN WITH
   1 50 -5        # convergence criteria
   1 121 1        # Estimate scaling parameter for Lorenzen (age_pars(5,1))
 PHASE10
 
-#
-#
-# ---------
-#  PHASE 11 Extra phase added to doitall
-# ---------
+# -----------------------------------------
+#  PHASE 11 - extra phase added to doitall
+# -----------------------------------------
 
-  mfclo64 bet.frq 10.par 11.par -file - <<PHASE11
+mfclo64 bet.frq 10.par 11.par -file - <<PHASE11
   1 1 5000
   1 50 -5        # convergence criteria
 PHASE11
