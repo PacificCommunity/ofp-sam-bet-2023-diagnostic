@@ -19,7 +19,6 @@ mfclo64 bet.frq 00.par 01.par -file - <<PHASE1
 # Richards growth settings
   1 226 0
   1 227 0
-#
 # Catch conditioned flags
 # General activation
   1 373 1  # activate CC with Baranov equation
@@ -35,7 +34,6 @@ mfclo64 bet.frq 00.par 01.par -file - <<PHASE1
   -999 10 0
   -999 15 0
   -999 13 0
-#
 # Survey fisheries defined
 # CPUE variation Index wt    Time varying CV
   -33 94 1       -33 92 88   -33 66 0
@@ -89,7 +87,6 @@ mfclo64 bet.frq 00.par 01.par -file - <<PHASE1
   -39 99 33
   -40 99 33
   -41 99 33
-#
 # Recruitment and initial population settings
   1 149 100        # recruitment deviation penalty
   1 400 6          # final six recruitment deviates set to zero
@@ -100,7 +97,6 @@ mfclo64 bet.frq 00.par 01.par -file - <<PHASE1
   2 93 4           # set no. of recruitments per year to 4
   2 57 4           # set no. of recruitments per year to 4
   2 94 1 2 128 10  # initial Z = 1.0*M, i.e. initial F = 0
-#
 # Likelihood component settings
   1 111 4     # set likelihood function for tags to negative binomial
   1 141 3     # set likelihood function for LF data to normal
@@ -108,7 +104,7 @@ mfclo64 bet.frq 00.par 01.par -file - <<PHASE1
   -999 49 20  # divide LF sample sizes by 20
   -999 50 20  # divide WF sample sizes by 20
 # For longline ALL and Index fisheries reduce sample size in half
-# so we aren't double counting the sample sizes
+# so we aren't double counting sample sizes
    -1 49 40   -1 50 40
    -2 49 40   -2 50 40
    -4 49 40   -4 50 40
@@ -127,7 +123,6 @@ mfclo64 bet.frq 00.par 01.par -file - <<PHASE1
   -39 49 40  -39 50 40
   -40 49 40  -40 50 40
   -41 49 40  -41 50 40
-#
 # Tag dynamics settings
   1 33 99    # maximum tag reporting rate for all fisheries is 0.99
   2 96 30    # pool tags after 30 quarters at liberty
@@ -177,7 +172,6 @@ mfclo64 bet.frq 00.par 01.par -file - <<PHASE1
   -39 32 26
   -40 32 26
   -41 32 26
-#
 # Selectivity settings
   -999 3 37  # all selectivities equal for age class 37 and older
   -999 26 2  # set length-dependent selectivity option
@@ -250,7 +244,7 @@ mfclo64 bet.frq 00.par 01.par -file - <<PHASE1
   -24 16 2  -24 3 12
   -19 16 2  -19 3 25  # also for PL fisheries
   -20 16 2  -20 3 25
-# Forcing selectivity to zero for large fish in the small MISC fisheries
+# Forcing selectivity to zero for large fish in small MISC fisheries
   -17 16 2  -17 3 9
   -21 16 2  -21 3 10
   -22 16 2  -22 3 7
@@ -356,7 +350,7 @@ mfclo64 bet.frq 07.par 08.par -file - <<PHASE8
   2 182 1    # make SRR annual rather than quarterly
   2 161 1    # lognormal bias correction
   2 163 0    # use steepness parameterization of B&H SRR
-  1 149 0    # set to 0 for the moment
+  1 149 0    # penalty for recruitment devs
   2 147 1    # time period between spawning and recruitment
   2 148 20   # period for MSY calc - last 20 quarters
   2 155 4    # but not including last year
