@@ -1,6 +1,6 @@
 ## Preprocess data, write TAF data tables
 
-## Before: fdesc.txt, yft.age_length, yft.frq, yft.tag (boot/data),
+## Before: fdesc.txt, bet.age_length, bet.frq, bet.tag (boot/data),
 ##         length.fit (boot/model_results)
 ## After:  cpue.csv, fisheries.csv, length_comps.csv, otoliths.csv,
 ##         weight_comps.csv (data)
@@ -13,9 +13,9 @@ mkdir("data")
 
 # Read data
 oto <- reading("otolith data",
-               read.MFCLALK("boot/data/yft.age_length",
+               read.MFCLALK("boot/data/bet.age_length",
                             "boot/data/model_results/length.fit"))
-frq <- reading("catch data", read.MFCLFrq("boot/data/yft.frq"))
+frq <- reading("catch data", read.MFCLFrq("boot/data/bet.frq"))
 fisheries <- reading("fisheries description",
                      read.table("boot/data/fdesc.txt", fill=TRUE, header=TRUE))
 
@@ -46,13 +46,11 @@ size <- size[size$freq != -1,]
 length.comps <- size[!is.na(size$length),]
 length.comps$season <- (1 + length.comps$month) / 3
 length.comps <- length.comps[c("year", "season", "fishery", "length", "freq")]
-row.names(length.comps) <- NULL
 
 # Weight compositions
 weight.comps <- size[!is.na(size$weight),]
 weight.comps$season <- (1 + weight.comps$month) / 3
 weight.comps <- weight.comps[c("year", "season", "fishery", "weight", "freq")]
-row.names(weight.comps) <- NULL
 
 # Write TAF tables
 write.taf(fisheries, dir="data")
